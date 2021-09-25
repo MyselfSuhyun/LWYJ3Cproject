@@ -46,7 +46,7 @@ def weather(nx,ny,ym,hm,h):
 # 제임스가 한거 엑셀읽어오는거!
 def confirm():
     #엑셀 읽기
-    a1 = pd.read_excel('gisangapiread.xls', header=1)
+    a1 = pd.read_excel('gisangapiread.xls', engine='openpyxl' ,header=1)
     # a1 = pd.read_excel('/home/ubuntu/LWYJ3Cproject/gisangapi.xls', header=1)
     #읽은 엑셀을 리스트로변환
     alist = a1.values.tolist()
