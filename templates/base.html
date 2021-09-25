@@ -49,7 +49,7 @@
             <li class="nav-item">
               <form action="{%url 'accounts:delete' %}" method="POST">
                 {% csrf_token %}
-                <button class="nav-link btn btn-light">Withdrawal</button>
+                <button class="nav-link btn btn-light">회원탈퇴</button>
               </form>
             </li>
           {% else %}
