@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+  <form action="{% url 'accounts:signup' %}" method='POST' class="mb-3">
+  {% csrf_token %}
+  {% bootstrap_form form%}
+  {% bootstrap_button "회원가입" button_type="submit" button_class="btn-success" %}
+  <a class="btn btn-light" href="{% url 'boards:index' %}">뒤로가기</a>
+  </form>
+{% endblock content %}

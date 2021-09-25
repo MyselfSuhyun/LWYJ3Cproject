@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row"> 
+      <div class="col col-md-6" >
+        <canvas id="mytem"></canvas> 
+      </div>
+      <div class="col col-md-6" >
+        <canvas id="myhum"></canvas>  
+      </div>
+    <div casll="row">
+      <p>분석결과</p>
+      <p>{{board.location}}의 {{board.created_at|date:"Y-m-d A h:i"}}</p>
+      <p>기상청 온도는 {{board.api_tem}}°C, 계측 온도는 {{board.real_tem}}°C 오차율은 {{board.error_tem}}%</p>
+      <p>기상청 습도는 {{board.api_hum}}%, 계측 습도는 {{board.real_hum}}% 오차율은 {{board.error_hum}}%</p>
+    </div>
+      
+    </div> 
+    <script> 
+          var mytem = document.getElementById('mytem'); 
+          var mytem = new Chart(mytem, { 
+            type: 'bar', 
+            data: { 
+              labels: ['API 온도', '계측 온도'], 
+              datasets: [{ 
+                label: '{{board.location}} 의 온도', 
+                data: [{{board.api_tem}},{{board.real_tem}}], 
+                backgroundColor: [ 
+                  'rgba(255, 99, 132, 0.2)', 
+                  'rgba(54, 162, 235, 0.2)',  
+                ], 
+                borderColor: [ 
+                  'rgba(255, 99, 132, 1)', 
+                  'rgba(54, 162, 235, 1)', 
+                ], 
+                borderWidth: 2 
+              }] 
+            }, 
+            options: {
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                      label: function(tooltipItem) {
+                              return tooltipItem.yLabel;
+                      }
+                    }
+                },
+              scales: { 
+                yAxes: [{ 
+                  ticks: {
+                    min:0,
+                    max:40, 
+                    beginAtZero: true 
+                  } 
+                }] 
+              }
+            }
+          }); 
+      </script> 
+      <script> 
+        var myhum = document.getElementById('myhum'); 
+        var myhum = new Chart(myhum, { 
+          type: 'bar', 
+          data: { 
+            labels: ['API 습도', '계측 습도'], 
+            datasets: [{ 
+              label: '{{board.location}} 의 습도', 
+              data: [{{board.api_hum}},{{board.real_hum}}], 
+              backgroundColor: [ 
+                'rgba(255, 99, 132, 0.2)', 
+                'rgba(54, 162, 235, 0.2)',  
+              ], 
+              borderColor: [ 
+                'rgba(255, 99, 132, 1)', 
+                'rgba(54, 162, 235, 1)', 
+              ], 
+              borderWidth: 2 
+            }] 
+          }, 
+          options: {
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                      label: function(tooltipItem) {
+                              return tooltipItem.yLabel;
+                      }
+                    }
+                },
+              scales: { 
+                yAxes: [{ 
+                  ticks: { 
+                    min:0,
+                    max:100,
+                    beginAtZero: true 
+                  } 
+                }] 
+              }
+            }
+          }); 
+      </script> 
+{% endblock content %}

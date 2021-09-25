@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for board in boards %}
+    <div>{{board.pk}}</div>
+    <div>{{board.real_tem}} {{board.api_tem}}</div>
+    <div>{{board.real_hum}} {{board.api_hum}}</div>
+    <div>{{board.location}}</div>
+    <hr>
+  {% endfor %}
+
+{% endblock content %}
