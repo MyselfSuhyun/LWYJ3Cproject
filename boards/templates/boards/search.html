@@ -2,7 +2,8 @@
 {% load bootstrap5 %}
 
 {% block content %}
-<form action="{% url 'boards:search' %}" method='GET'>
+<form action="{% url 'boards:search' %}" method='POST'>
+  {% csrf_token %}
   <div class="p-1">
     <label for="longitude">경도: </label>
     <input type="text" id="longitude" name="longitude">
