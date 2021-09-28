@@ -31,21 +31,21 @@ def search(request):
         board.save()
         return redirect('boards:index')
     else:
-        if request.GET.get('longitude'):
-            longitude = request.GET.get('longitude') # 경도
-            latitude = request.GET.get('latitude') # 위도
-            temperature = request.GET.get('temperature') #온도
-            humidity= request.GET.get('humidity') #습도
-            rth = send(longitude,latitude)
-            err = error(temperature,humidity)
-            board = Board(location=rth[0],api_tem=rth[1],api_hum=rth[2],real_tem=temperature,real_hum=humidity)
-            board.error_tem = (rth[1]-err[0])/rth[1]*100
-            board.error_hum = (rth[2]-err[1])/rth[2]*100
-            board.writer = request.user
-            board.save()
-            return redirect('boards:index')
-        else:
-            board= Board()
+        # if request.GET.get('longitude'):
+        #     longitude = request.GET.get('longitude') # 경도
+        #     latitude = request.GET.get('latitude') # 위도
+        #     temperature = request.GET.get('temperature') #온도
+        #     humidity= request.GET.get('humidity') #습도
+        #     rth = send(longitude,latitude)
+        #     err = error(temperature,humidity)
+        #     board = Board(location=rth[0],api_tem=rth[1],api_hum=rth[2],real_tem=temperature,real_hum=humidity)
+        #     board.error_tem = (rth[1]-err[0])/rth[1]*100
+        #     board.error_hum = (rth[2]-err[1])/rth[2]*100
+        #     board.writer = request.user
+        #     board.save()
+        #     return redirect('boards:index')
+        # else:
+        board= Board()
     context = {
         'board':board,
     }
