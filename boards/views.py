@@ -115,7 +115,7 @@ def totalgraph(request):
 def gisangupdate(request):
     #엑셀 읽기
     if str(request.user) =='admin':
-        a1 = pd.read_excel('gisangapi.xlsx', header=1)
+        a1 = pd.read_excel('gisangapi.xlsx', header=1,engine ='openpyxl')
         #읽은 엑셀을 리스트로변환
         alist = a1.values.tolist()
         for i in range(len(alist)):
