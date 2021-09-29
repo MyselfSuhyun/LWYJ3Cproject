@@ -7,4 +7,6 @@ urlpatterns = [
     path('search/',views.search,name='search'),
     path('graph/',views.graph,name='graph'),
     path('totalgraph/',views.totalgraph,name='totalgraph'),
+    path('gisangupdate/',views.gisangupdate,name='gisangupdate'),
+    path('gisangdelete/',views.gisnagdelete,name='gisangdelete'),
 ]

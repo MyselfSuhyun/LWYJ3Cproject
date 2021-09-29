@@ -46,8 +46,7 @@ def weather(nx,ny,ym,hm,h):
 # 제임스가 한거 엑셀읽어오는거!
 def confirm():
     #엑셀 읽기
-    a1 = pd.read_excel('gisangapiread.xlsx', engine='openpyxl' ,header=1)
-    # a1 = pd.read_excel('/home/ubuntu/LWYJ3Cproject/gisangapi.xls', header=1)
+    a1 = pd.read_excel('gisangapi.xlsx', header=1)
     #읽은 엑셀을 리스트로변환
     alist = a1.values.tolist()
     gisang_dict = {}
@@ -68,20 +67,45 @@ def confirm():
             gisang_dict[alist[i][2]]={alist[i][3]:''}
     return gisang_dict
         
+# def send(long,lati):
+#     dic_j = confirm() # 기상 정보를 가져오기위한 격자를 보관한 딕셔너리 받아오기!
+#     # long,lati = map(float,input().split()) # 위도, 경도를 입력받는거.
+#     dong = test(float(long),float(lati))
+#     # print(dong)
+#     # print(dic_j)
+#     if dic_j.get(dong[0]):
+#         if dic_j[dong[0]].get(dong[1]):
+#             if dic_j[dong[0]][dong[1]].get(dong[2]):
+#                 dic_url = dic_j[dong[0]][dong[1]][dong[2]]
+#             else:
+#                 dic_url = dic_j[dong[0]][dong[1]]['default']
+#     # print(dic_url)
+
+    # hellotime=0
+    # now = datetime.datetime.now()
+    # nowDate = now.strftime('%Y%m%d')
+    # nowtime = int(now.strftime('%H%M'))-100
+    # resulttime = now.strftime('%H:%M')
+    # if nowtime<100:
+    #     nowtime=f'00{nowtime}'
+    # elif nowtime<1000:
+    #     nowtime = f'0{nowtime}'
+    # elif nowtime>=1800:
+    #     nowtime = 1700
+    #     hellotime = now.strftime('%H')+'00'
+
+
+#     temp, human = weather(dic_url[0],dic_url[1],nowDate,nowtime,hellotime)
+#     # print(f'현재위치 {dong[2]}이며, 현재 시간 {resulttime}입니다.  기온은 {temp}°이며, 습도는 {human}% 입니다.')
+#     result = [dong[2],int(temp),int(human)]
+#     return result
+
 def send(long,lati):
-    dic_j = confirm() # 기상 정보를 가져오기위한 격자를 보관한 딕셔너리 받아오기!
     # long,lati = map(float,input().split()) # 위도, 경도를 입력받는거.
     dong = test(float(long),float(lati))
-    # print(dong)
-    # print(dic_j)
-    if dic_j.get(dong[0]):
-        if dic_j[dong[0]].get(dong[1]):
-            if dic_j[dong[0]][dong[1]].get(dong[2]):
-                dic_url = dic_j[dong[0]][dong[1]][dong[2]]
-            else:
-                dic_url = dic_j[dong[0]][dong[1]]['default']
-    # print(dic_url)
+    return dong
 
+def gisangapi(dong,gridx,gridy):
     hellotime=0
     now = datetime.datetime.now()
     nowDate = now.strftime('%Y%m%d')
@@ -94,11 +118,9 @@ def send(long,lati):
     elif nowtime>=1800:
         nowtime = 1700
         hellotime = now.strftime('%H')+'00'
-
-
-    temp, human = weather(dic_url[0],dic_url[1],nowDate,nowtime,hellotime)
+    temp, human = weather(gridx,gridy,nowDate,nowtime,hellotime)
     # print(f'현재위치 {dong[2]}이며, 현재 시간 {resulttime}입니다.  기온은 {temp}°이며, 습도는 {human}% 입니다.')
-    result = [dong[2],int(temp),int(human)]
+    result = [dong, int(temp),int(human)]
     return result
 
 def error(tem,hum):

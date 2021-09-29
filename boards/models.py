@@ -12,3 +12,10 @@ class Board(models.Model):
     error_hum = models.IntegerField()
     created_at= models.DateTimeField(auto_now_add=True)
     writer = models.CharField(max_length=30)
+
+class GisangGrid(models.Model):
+    si = models.CharField(max_length=20)
+    gu = models.CharField(max_length=20,default='default')
+    do = models.CharField(max_length=20,default='default')
+    gridx = models.IntegerField()
+    gridy = models.IntegerField()

@@ -2,6 +2,12 @@
 {% load bootstrap5 %}
 
 {% block content %}
+<a class="btn btn-light" href="{% url 'boards:gisangupdate' %}">API 업데이트</a>
+<form action="{% url 'boards:gisangdelete' %}" method='POST'>
+  {% csrf_token %}
+  {% bootstrap_button "API 삭제하기" button_type="submit" button_class="btn-success" %}
+  </div>
+</form>
 <form action="{% url 'boards:search' %}" method='POST'>
   {% csrf_token %}
   <div class="p-1">
