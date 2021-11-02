@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'boards',
     'accounts',
     'api',
+    'arduino',
     'django_extensions',
     'bootstrap5',
     'django.contrib.admin',

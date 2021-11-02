@@ -9,4 +9,5 @@ urlpatterns = [
     path('totalgraph/',views.totalgraph,name='totalgraph'),
     path('gisangupdate/',views.gisangupdate,name='gisangupdate'),
     path('gisangdelete/',views.gisnagdelete,name='gisangdelete'),
+    path('datasend/',views.datasend,name='datasend'),
 ]

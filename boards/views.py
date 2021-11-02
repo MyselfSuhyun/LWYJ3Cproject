@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import pandas as pd
 from numpy import NaN
+from arduino.arduino_data import data
 
 @require_safe
 def index(request):
@@ -14,6 +15,7 @@ def index(request):
     boards = boards.filter(writer=request.user)
     context = {
         'boards':boards,
+        'data': data,
     }
     return render(request,'boards/index.html',context)
 
@@ -136,3 +138,9 @@ def gisnagdelete(request):
         return redirect('boards:search')
     else:
         return redirect('boards:search')
+
+def datasend(request):
+    context = {
+        'data': data,
+    }
+    return render(request, 'boards/search.html', context)
